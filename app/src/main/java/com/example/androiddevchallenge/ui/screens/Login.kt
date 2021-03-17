@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -35,7 +36,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
@@ -71,6 +76,7 @@ fun Login() = Surface(
         )
         Spacer(Modifier.height(32.dp))
         FullWidthTextField(
+            hint = "Email address",
             value = email,
             onValueChange = {
                 email = it
@@ -78,6 +84,7 @@ fun Login() = Surface(
         )
         Spacer(Modifier.height(8.dp))
         FullWidthTextField(
+            hint = "Password",
             value = password,
             onValueChange = {
                 password = it
@@ -85,13 +92,23 @@ fun Login() = Surface(
         )
         Spacer(Modifier.height(8.dp))
         FullWidthButton {
-            Text("Login")
+            Text("Log in")
         }
+        Text(
+            modifier = Modifier.paddingFromBaseline(32.dp),
+            style = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onBackground),
+            text = buildAnnotatedString {
+                append("Don't have an account? ")
+                withStyle(SpanStyle(textDecoration = TextDecoration.Underline)) {
+                    append("Sign up!")
+                }
+            }
+        )
     }
 }
 
 @Preview
 @Composable
-fun LoginPreview() = MyTheme {
+fun LoginPreview() = MyTheme(darkTheme = true) {
     Login()
 }

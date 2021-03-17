@@ -17,20 +17,37 @@ package com.example.androiddevchallenge.ui.elements
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
 fun FullWidthTextField(
+    hint: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit
 ) = TextField(
     value = value,
     onValueChange = onValueChange,
+    label = {
+        Text(
+            text = hint,
+            style = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onSurface),
+        )
+    },
     modifier = Modifier
         .height(56.dp)
         .fillMaxWidth()
 )
+
+@Preview
+@Composable
+fun Preview() = MyTheme {
+    FullWidthTextField(hint = "Login", value = TextFieldValue(""), onValueChange = { /*TODO*/ })
+}
