@@ -37,6 +37,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.model.Collection
+import com.example.androiddevchallenge.ui.elements.CircleItem
+import com.example.androiddevchallenge.ui.elements.FavoriteCard
 import com.example.androiddevchallenge.ui.elements.FullWidthTextField
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
@@ -62,17 +65,22 @@ fun Home() = Column(
         }
     )
     SectionTitle("FAVORITE COLLECTIONS")
-    Spacer(Modifier.height(8.dp))
+    FavoriteCard(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
     SectionTitle("ALIGN YOUR BODY")
+    CircleItem(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
     SectionTitle("ALIGN YOUR MIND")
+    CircleItem(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
 }
 
 @Composable
-fun SectionTitle(text: String) = Text(
-    modifier = Modifier.paddingFromBaseline(40.dp),
-    text = text,
-    style = MaterialTheme.typography.h2
-)
+fun SectionTitle(text: String) = Column {
+    Text(
+        modifier = Modifier.paddingFromBaseline(40.dp),
+        text = text,
+        style = MaterialTheme.typography.h2
+    )
+    Spacer(Modifier.height(8.dp))
+}
 
 @Preview
 @Composable
