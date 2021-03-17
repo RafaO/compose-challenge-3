@@ -31,10 +31,12 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 fun FullWidthTextField(
     hint: String,
     value: TextFieldValue,
-    onValueChange: (TextFieldValue) -> Unit
+    onValueChange: (TextFieldValue) -> Unit,
+    leadingIcon: @Composable (() -> Unit)? = null
 ) = TextField(
     value = value,
     onValueChange = onValueChange,
+    leadingIcon = leadingIcon,
     label = {
         Text(
             text = hint,
