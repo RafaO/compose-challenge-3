@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -77,34 +78,37 @@ fun Home() = Scaffold(
     },
     bottomBar = { BottomBar() }
 ) {
-    Column(
-        Modifier
-            .background(color = MaterialTheme.colors.background)
-            .padding(top = 56.dp, start = 16.dp)
-            .verticalScroll(rememberScrollState())
-            .fillMaxHeight()
-    ) {
-        var search by remember { mutableStateOf(TextFieldValue("")) }
+    Box(Modifier.padding(it)) {
+        Column(
+            Modifier
+                .background(color = MaterialTheme.colors.background)
+                .padding(start = 16.dp)
+                .verticalScroll(rememberScrollState())
+                .fillMaxHeight()
+        ) {
+            var search by remember { mutableStateOf(TextFieldValue("")) }
 
-        FullWidthTextField(
-            modifier = Modifier.padding(end = 16.dp),
-            hint = "Search",
-            value = search,
-            onValueChange = { search = it },
-            leadingIcon = {
-                Icon(
-                    Icons.Filled.Search,
-                    "search",
-                    Modifier.size(18.dp)
-                )
-            }
-        )
-        SectionTitle("FAVORITE COLLECTIONS")
-        CollectionGrid()
-        SectionTitle("ALIGN YOUR BODY")
-        CollectionRow(items = collections())
-        SectionTitle("ALIGN YOUR MIND")
-        CollectionRow(items = collections())
+            Spacer(Modifier.height(56.dp))
+            FullWidthTextField(
+                modifier = Modifier.padding(end = 16.dp),
+                hint = "Search",
+                value = search,
+                onValueChange = { search = it },
+                leadingIcon = {
+                    Icon(
+                        Icons.Filled.Search,
+                        "search",
+                        Modifier.size(18.dp)
+                    )
+                }
+            )
+            SectionTitle("FAVORITE COLLECTIONS")
+            CollectionGrid()
+            SectionTitle("ALIGN YOUR BODY")
+            CollectionRow(items = collections())
+            SectionTitle("ALIGN YOUR MIND")
+            CollectionRow(items = collections())
+        }
     }
 }
 
