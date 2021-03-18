@@ -29,6 +29,7 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
 fun FullWidthTextField(
+    modifier: Modifier = Modifier,
     hint: String,
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
@@ -43,7 +44,7 @@ fun FullWidthTextField(
             style = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onSurface),
         )
     },
-    modifier = Modifier
+    modifier = modifier
         .height(56.dp)
         .fillMaxWidth()
 )

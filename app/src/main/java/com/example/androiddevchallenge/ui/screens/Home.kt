@@ -78,12 +78,13 @@ fun Home() = Scaffold(
     Column(
         Modifier
             .background(color = MaterialTheme.colors.background)
-            .padding(top = 56.dp, start = 8.dp)
+            .padding(top = 56.dp, start = 16.dp)
             .fillMaxHeight()
     ) {
         var search by remember { mutableStateOf(TextFieldValue("")) }
 
         FullWidthTextField(
+            modifier = Modifier.padding(end = 16.dp),
             hint = "Search",
             value = search,
             onValueChange = { search = it },
