@@ -26,6 +26,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.FabPosition
@@ -79,6 +81,7 @@ fun Home() = Scaffold(
         Modifier
             .background(color = MaterialTheme.colors.background)
             .padding(top = 56.dp, start = 16.dp)
+            .verticalScroll(rememberScrollState())
             .fillMaxHeight()
     ) {
         var search by remember { mutableStateOf(TextFieldValue("")) }
