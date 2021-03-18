@@ -35,8 +35,8 @@ import com.example.androiddevchallenge.model.Collection
 import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
-fun FavoriteCard(collection: Collection) = Row(
-    Modifier
+fun FavoriteCard(collection: Collection, modifier: Modifier = Modifier) = Row(
+    modifier
         .width(192.dp)
         .height(56.dp)
         .background(color = MaterialTheme.colors.surface)

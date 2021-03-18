@@ -23,11 +23,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
+import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,34 +54,94 @@ import com.example.androiddevchallenge.ui.elements.FavoriteCard
 import com.example.androiddevchallenge.ui.elements.FullWidthTextField
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
-@Composable
-fun Home() = Column(
-    Modifier
-        .background(color = MaterialTheme.colors.background)
-        .padding(top = 56.dp, start = 8.dp)
-        .fillMaxHeight()
-) {
-    var search by remember { mutableStateOf(TextFieldValue("")) }
+private fun collections() =
+    List(10) { Collection("Short mantras", "https://picsum.photos/id/1025/200/150") }
 
-    FullWidthTextField(
-        hint = "Search",
-        value = search,
-        onValueChange = { search = it },
-        leadingIcon = {
+@Composable
+fun Home() = Scaffold(
+    floatingActionButtonPosition = FabPosition.Center,
+    isFloatingActionButtonDocked = true,
+    floatingActionButton = {
+        FloatingActionButton(
+            backgroundColor = MaterialTheme.colors.primary,
+            onClick = { /*TODO*/ }
+        ) {
             Icon(
-                Icons.Filled.Search,
-                "search",
-                Modifier.size(18.dp)
+                Icons.Filled.PlayArrow,
+                "play",
+                Modifier.size(24.dp)
             )
         }
-    )
-    SectionTitle("FAVORITE COLLECTIONS")
-    FavoriteCard(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
-    SectionTitle("ALIGN YOUR BODY")
-    CircleItem(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
-    SectionTitle("ALIGN YOUR MIND")
-    CircleItem(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
+    },
+    bottomBar = { BottomBar() }
+) {
+    Column(
+        Modifier
+            .background(color = MaterialTheme.colors.background)
+            .padding(top = 56.dp, start = 8.dp)
+            .fillMaxHeight()
+    ) {
+        var search by remember { mutableStateOf(TextFieldValue("")) }
+
+        FullWidthTextField(
+            hint = "Search",
+            value = search,
+            onValueChange = { search = it },
+            leadingIcon = {
+                Icon(
+                    Icons.Filled.Search,
+                    "search",
+                    Modifier.size(18.dp)
+                )
+            }
+        )
+        SectionTitle("FAVORITE COLLECTIONS")
+        LazyRow {
+            collections().chunked(2).forEach {
+                item {
+                    Spacer(Modifier.width(8.dp))
+                    Column {
+                        it.forEach { FavoriteCard(it, Modifier.padding(bottom = 8.dp)) }
+                    }
+                }
+            }
+        }
+        // FavoriteCard(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
+        SectionTitle("ALIGN YOUR BODY")
+        CollectionRow(items = collections())
+        SectionTitle("ALIGN YOUR MIND")
+        CollectionRow(items = collections())
+    }
 }
+
+@Composable
+fun BottomBar() = BottomNavigation(backgroundColor = MaterialTheme.colors.background) {
+    BottomNavigationItem(
+        selected = true, onClick = { /*TODO*/ },
+        icon = {
+            Icon(
+                Icons.Filled.Spa,
+                "play",
+                Modifier.size(18.dp)
+            )
+        },
+        label = { TabLabel("HOME") }
+    )
+    BottomNavigationItem(
+        selected = false, onClick = { /*TODO*/ },
+        icon = {
+            Icon(
+                Icons.Rounded.AccountCircle,
+                "play",
+                Modifier.size(18.dp)
+            )
+        },
+        label = { TabLabel("PROFILE") }
+    )
+}
+
+@Composable
+fun TabLabel(label: String) = Text(label, style = MaterialTheme.typography.caption)
 
 @Composable
 fun SectionTitle(text: String) = Column {
@@ -80,6 +151,14 @@ fun SectionTitle(text: String) = Column {
         style = MaterialTheme.typography.h2
     )
     Spacer(Modifier.height(8.dp))
+}
+
+@Composable
+fun CollectionRow(items: List<Collection>) = LazyRow {
+    items(items) {
+        CircleItem(it)
+        Spacer(Modifier.width(8.dp))
+    }
 }
 
 @Preview
