@@ -100,21 +100,23 @@ fun Home() = Scaffold(
             }
         )
         SectionTitle("FAVORITE COLLECTIONS")
-        LazyRow {
-            collections().chunked(2).forEach {
-                item {
-                    Spacer(Modifier.width(8.dp))
-                    Column {
-                        it.forEach { FavoriteCard(it, Modifier.padding(bottom = 8.dp)) }
-                    }
-                }
-            }
-        }
-        // FavoriteCard(Collection("Short mantras", "https://picsum.photos/id/1025/200/150"))
+        CollectionGrid()
         SectionTitle("ALIGN YOUR BODY")
         CollectionRow(items = collections())
         SectionTitle("ALIGN YOUR MIND")
         CollectionRow(items = collections())
+    }
+}
+
+@Composable
+fun CollectionGrid() = LazyRow {
+    collections().chunked(2).forEach {
+        item {
+            Spacer(Modifier.width(8.dp))
+            Column {
+                it.forEach { FavoriteCard(it, Modifier.padding(bottom = 8.dp)) }
+            }
+        }
     }
 }
 
