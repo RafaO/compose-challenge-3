@@ -49,7 +49,7 @@ import com.example.androiddevchallenge.ui.elements.FullWidthTextField
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
-fun Login() = Surface(
+fun Login(onLoginClicked: () -> Unit) = Surface(
     Modifier
         .background(color = MaterialTheme.colors.background)
         .fillMaxSize(),
@@ -91,7 +91,7 @@ fun Login() = Surface(
             }
         )
         Spacer(Modifier.height(8.dp))
-        FullWidthButton {
+        FullWidthButton(onClick = onLoginClicked) {
             Text("Log in")
         }
         Text(
@@ -110,5 +110,5 @@ fun Login() = Surface(
 @Preview
 @Composable
 fun LoginPreview() = MyTheme(darkTheme = true) {
-    Login()
+    Login {}
 }

@@ -30,12 +30,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun FullWidthButton(
     colors: ButtonColors = ButtonDefaults.buttonColors(),
+    onClick: () -> Unit = {},
     content: @Composable RowScope.() -> Unit
 ) = Button(
     modifier = Modifier
         .height(72.dp)
         .fillMaxWidth(),
-    onClick = { },
+    onClick = onClick,
     shape = MaterialTheme.shapes.medium.copy(CornerSize(16.dp)),
     colors = colors,
     content = content

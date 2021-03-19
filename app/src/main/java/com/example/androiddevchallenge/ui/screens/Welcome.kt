@@ -39,7 +39,7 @@ import com.example.androiddevchallenge.ui.elements.FullWidthButton
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
-fun Welcome() = Surface(
+fun Welcome(loginClicked: () -> Unit) = Surface(
     Modifier
         .background(color = MaterialTheme.colors.background)
         .fillMaxSize(),
@@ -65,7 +65,8 @@ fun Welcome() = Surface(
         }
         Spacer(Modifier.height(8.dp))
         FullWidthButton(
-            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
+            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary),
+            onClick = loginClicked
         ) {
             Text("Login")
         }
@@ -76,6 +77,6 @@ fun Welcome() = Surface(
 @Composable
 fun LightPreview() {
     MyTheme {
-        Welcome()
+        Welcome {}
     }
 }
