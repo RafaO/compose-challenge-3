@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,5 +42,9 @@ fun CircleItem(collection: Collection) =
             contentScale = ContentScale.Crop
         )
 
-        Text(collection.name, modifier = Modifier.paddingFromBaseline(24.dp))
+        Text(
+            collection.name,
+            modifier = Modifier.paddingFromBaseline(24.dp),
+            style = MaterialTheme.typography.h3
+        )
     }
