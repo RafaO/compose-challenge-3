@@ -51,14 +51,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.data.alignBody
+import com.example.androiddevchallenge.data.alignMind
+import com.example.androiddevchallenge.data.collections
 import com.example.androiddevchallenge.model.Collection
 import com.example.androiddevchallenge.ui.elements.CircleItem
 import com.example.androiddevchallenge.ui.elements.FavoriteCard
 import com.example.androiddevchallenge.ui.elements.FullWidthTextField
 import com.example.androiddevchallenge.ui.theme.MyTheme
-
-private fun collections() =
-    List(10) { Collection("Short mantras", "https://picsum.photos/id/1025/200/150") }
 
 @Composable
 fun Home() = Scaffold(
@@ -105,9 +105,9 @@ fun Home() = Scaffold(
             SectionTitle("FAVORITE COLLECTIONS")
             CollectionGrid()
             SectionTitle("ALIGN YOUR BODY")
-            CollectionRow(items = collections())
+            CollectionRow(items = alignBody())
             SectionTitle("ALIGN YOUR MIND")
-            CollectionRow(items = collections())
+            CollectionRow(items = alignMind())
         }
     }
 }
