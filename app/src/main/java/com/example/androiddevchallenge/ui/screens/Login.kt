@@ -16,7 +16,6 @@
 package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -50,9 +49,8 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
 fun Login(onLoginClicked: () -> Unit) = Surface(
-    Modifier
-        .background(color = MaterialTheme.colors.background)
-        .fillMaxSize(),
+    Modifier.fillMaxSize(),
+    color = MaterialTheme.colors.background
 ) {
     val background = if (MaterialTheme.colors.isLight) R.drawable.light_login
     else R.drawable.dark_login
