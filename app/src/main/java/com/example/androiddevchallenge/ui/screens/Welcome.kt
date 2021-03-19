@@ -42,10 +42,9 @@ fun Welcome(loginClicked: () -> Unit) = Surface(
     Modifier.fillMaxSize(),
     color = MaterialTheme.colors.background
 ) {
-    val (background, logo) = if (MaterialTheme.colors.isLight) Pair(
-        R.drawable.dark_welcome,
-        R.drawable.dark_logo
-    ) else Pair(R.drawable.light_welcome, R.drawable.light_logo)
+    val (background, logo) =
+        if (MaterialTheme.colors.isLight) Pair(R.drawable.light_welcome, R.drawable.light_logo)
+        else Pair(R.drawable.dark_welcome, R.drawable.dark_logo)
     Image(
         contentScale = ContentScale.FillBounds,
         painter = painterResource(background),
